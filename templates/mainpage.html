@@ -43,7 +43,7 @@
                                         {% trans 'Hello,'%} <b>{{ request.user.first_name }}</b></a>
 
                                         <div class="dropdown-menu" style="background-color: #bee5eb"  aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                                        <a class="dropdown-item" href="{% url 'login_register:profile' %}">Profile</a>
                                         <a class="dropdown-item" href="#">Booking History</a>
                                         <a class="dropdown-item" href="{% url 'login_register:log_out' %}">Log Out</a>
                                         </div>

@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Main_Content.urls')),
     path('login_register/', include('login_register.urls')),
-    path('profile/', IndexPageView.as_view(), name='profile'),
+    path('index/', IndexPageView.as_view(), name='index'),
     path('i18n/', include('django.conf.urls.i18n')),
     path('language/', ChangeLanguageView.as_view(), name='change_language'),
 ]

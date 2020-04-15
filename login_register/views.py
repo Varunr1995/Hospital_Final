@@ -33,7 +33,7 @@ from .models import Activation
 # Create your views here.
 
 class IndexPageView(TemplateView):
-    template_name = 'changes/profile.html'
+    template_name = 'changes/index.html'
 
 
 class ChangeLanguageView(TemplateView):
@@ -140,7 +140,7 @@ class SignUpView(GuestOnlyView, FormView):
 
             messages.success(request, _('You are successfully signed up!'))
 
-        return redirect('profile')
+        return redirect('index')
 
 
 class ActivateView(View):
