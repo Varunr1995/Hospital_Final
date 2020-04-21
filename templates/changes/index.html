@@ -1,0 +1,284 @@
+{% load i18n %}
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Home Page</title>
+    <link rel = "icon" href ="https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200X200.png" type = "image/x-icon">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="CareMed demo project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+</head>
+<body>
+
+<div class="super_container">
+
+    <!-- Header -->
+
+    <header class="header trans_200">
+
+        <!-- Top Bar -->
+        <div class="top_bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+                            <div class="top_bar_item"><a href="#">FAQ</a></div>
+                            <div class="top_bar_item"><a href="{% url 'appointmentform' %}">Request an Appointment</a></div>
+                            <div class="emergencies  d-flex flex-row align-items-center justify-content-start ml-auto">For Emergencies: +919999999999</div>
+
+                            {% if request.user.is_authenticated %}
+                                <div class="loginsettings">
+                                    <div class="dropdown show">
+                                    <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {% trans 'Hello,'%} <b>{{ request.user.first_name }}</b></a>
+
+                                        <div class="dropdown-menu" style="background-color: #bee5eb"  aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{% url 'index' %}">Profile</a>
+                                        <a class="dropdown-item" href="#">Booking History</a>
+                                        <a class="dropdown-item" href="{% url 'login_register:log_out' %}">Log Out</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% else %}
+
+                                <div class="top_bar_item"><a href="{% url 'login_register:log_in' %}">Login</a></div>
+                                <div class="top_bar_item"><a href="{% url 'login_register:sign_up' %}">Sign Up</a></div>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header Content -->
+        <div class="header_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                            <nav class="main_nav ml-auto">
+                                <ul>
+                                    <li><a href="{% url 'homepage' %}">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About us</a></li>
+                                    <li><a href="{% url 'services' %}">Services</a></li>
+                                    <li><a href="{% url 'news' %}">News</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </nav>
+                            <div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo -->
+        <div class="logo_container_outer">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="logo_container">
+                            <a href="#">
+                                <div class="logo_content d-flex flex-column align-items-start justify-content-center">
+                                    <div class="logo_line"></div>
+                                    <div class="logo d-flex flex-row align-items-center justify-content-center">
+                                        <div class="logo_text">Care<span>Med</span></div>
+                                        <div class="logo_box">+</div>
+                                    </div>
+                                    <div class="logo_sub">Health Care Center</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    {% if request.user.is_authenticated %}
+            <!-- NAVIGATION BUTTONS IN PROFILE --->
+        <div class="something"><a href="{% url 'appointmentform' %}">
+            <div class="profile_buttons">
+                <div class="login_button"><img alt="Login &amp; security" width="100px" height="80px" src="https://images-na.ssl-images-amazon.com/images/G/31/x-locale/cs/ya/images/sign-in-lock._CB485931504_.png"></div>
+                <div class="content">Your Account</div>
+            </div>
+        </a>
+        </div>
+
+        <div class="something1"><a href="#">
+            <div class="profile_buttons1">
+                <div class="login_button1"><img alt="Login &amp; security" width="100px" height="80px" src="https://images-na.ssl-images-amazon.com/images/G/31/x-locale/cs/ya/images/sign-in-lock._CB485931504_.png"></div>
+                <div class="content1">Appointment History</div>
+            </div>
+        </a>
+        </div>
+
+        <div class="something2"><a href="#">
+            <div class="profile_buttons2">
+                <div class="login_button2"><img alt="Login &amp; security" width="100px" height="80px" src="https://images-na.ssl-images-amazon.com/images/G/31/x-locale/cs/ya/images/sign-in-lock._CB485931504_.png"></div>
+                <div class="content2">Appointment History</div>
+            </div>
+        </a>
+        </div>
+
+            {% else %}
+
+            <div class="loginstyle"><H3>Please follow the link sent to your email for confirmation</H3></div>
+
+    {% endif %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- Footer -->
+
+    <footer class="footer">
+        <div class="footer_container">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Footer - About -->
+                    <div class="col-lg-4 footer_col">
+                        <div class="footer_about">
+                            <div class="footer_logo_container">
+                                <a href="#" class="d-flex flex-column align-items-center justify-content-center">
+                                    <div class="logo_content">
+                                        <div class="logo d-flex flex-row align-items-center justify-content-center">
+                                            <div class="logo_text">Care<span>Med</span></div>
+                                            <div class="logo_box">+</div>
+                                        </div>
+                                        <div class="logo_sub">Health Care Center</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="footer_about_text">
+                                <p>Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. Curabitur ante leo, finibus quis est ut, tempor tincidunt ipsum.</p>
+                            </div>
+                            <ul class="footer_about_list">
+                                <li><div class="footer_about_icon"><img src="{% static 'images/phone-call.svg' %}" alt=""></div><span>+45 677 8993000 223</span></li>
+                                <li><div class="footer_about_icon"><img src="{% static 'images/envelope.svg' %}" alt=""></div><span>office@template.com</span></li>
+                                <li><div class="footer_about_icon"><img src="{% static 'images/placeholder.svg' %}" alt=""></div><span>Main Str. no 45-46, b3, 56832, Los Angeles, CA</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Footer - Links -->
+                    <div class="col-lg-4 footer_col">
+                        <div class="footer_links footer_column">
+                            <div class="footer_title">Useful Links</div>
+                            <ul>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Apply for a Job</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Our Partners</a></li>
+                                <li><a href="#">Services</a></li>
+                                <li><a href="#">Free services</a></li>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Our Screening Program</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Footer - News -->
+                    <div class="col-lg-4 footer_col">
+                        <div class="footer_news footer_column">
+                            <div class="footer_title">Useful Links</div>
+                            <ul>
+                                <li>
+                                    <div class="footer_news_title"><a href="news.html">Aliquam ac eleifend metus</a></div>
+                                    <div class="footer_news_date">March 10, 2018</div>
+                                </li>
+                                <li>
+                                    <div class="footer_news_title"><a href="news.html">Donec in libero sit amet mi vulputate</a></div>
+                                    <div class="footer_news_date">March 10, 2018</div>
+                                </li>
+                                <li>
+                                    <div class="footer_news_title"><a href="news.html">Aliquam ac eleifend metus</a></div>
+                                    <div class="footer_news_date">March 10, 2018</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="copyright_content d-flex flex-lg-row flex-column align-items-lg-center justify-content-start">
+
+                            <div class="footer_social ml-lg-auto">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
